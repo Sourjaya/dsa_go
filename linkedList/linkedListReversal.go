@@ -23,3 +23,15 @@ func LinkedListReversalRecursive(list dStructures.LinkedList[int], head *dStruct
 	head.Next = nil
 	return &dStructures.LinkedList[int]{Head: newHead}, newHead
 }
+
+func LinkedListReversalUsingHead(head *dStructures.Node[int]) *dStructures.Node[int] {
+	var prevNode *dStructures.Node[int] = nil
+	currNode := head
+	for currNode != nil {
+		nextNode := currNode.Next
+		currNode.Next = prevNode
+		prevNode = currNode
+		currNode = nextNode
+	}
+	return prevNode
+}
